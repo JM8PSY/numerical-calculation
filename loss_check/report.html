@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>report.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="20250422-%E6%95%B0%E5%80%A4%E8%A8%88%E7%AE%97%E3%83%AC%E3%83%9D%E3%83%BC%E3%83%88">20250422-数値計算レポート</h1>
+<p>名前：辻本純平<br>
+番号：29</p>
+<h2 id="%E3%83%AC%E3%83%9D%E3%83%BC%E3%83%88">レポート</h2>
+<ul>
+<li>float.c</li>
+</ul>
+<p>00111111100100000000000000000000(32 bit)
+0011111111110010000000000000000000000000000000000000000000000000(64 bit)
+00000000000000000000000000000000000000000000000000000000000000000000000000000000(80 bit)
+00111111111111110010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000(128 bit)</p>
+<p>このプログラムはdouble,long doubleがどのようにコンピュータ内で表現されているかを確かめるプログラムである．</p>
+<p>実行結果からわかるように，上から32bit,64bit,80bit,128bitである．特筆するべきなのは，80bitはx87拡張の数であるということ．なので，一般的ではない．これらはx64-86のintelアーキテクチャなどでしか動作せず，RaspberryPiやARMではほとんど動作しないことが多い．
+以下のようなビットのフォーマットになっている．
+フォーマット | ビット長 | 符号ビット | 指数ビット（値） | 実指数 | 仮数ビット（値） | 実仮数 | 結果
+単精度 (float) | 32bit | 0 | 01111111 (127) | 0 | 001000... | 1.25 | 1.25
+倍精度 (double) | 64bit | 0 | 01111111111 (1023) | 0 | 001000... | 1.25 | 1.25
+拡張精度 (x87) | 80bit | 0 | 000000000000000 (0) | 特殊値 | 000... | 0 | +0.0
+四倍精度 (quad) | 128bit | 0 | 011111111111111 (16383) | 0 | 001000... | 1.25 | 1.25</p>
+<ul>
+<li>frange.c</li>
+</ul>
+<p>FLT_MIN = 1.175494e-38,  FLT_MAX = 3.402823e+38<br>
+DBL_MIN = 2.225074e-308,  DBL_MAX = 1.797693e+308</p>
+<p>このプログラムは浮動小数点数の最大値と最小値を表示するプログラムである．<br>
+これらの値はそれぞれIEEE 754規格に基づいており，単精度 (float) と倍精度 (double) の範囲を示している．<br>
+FLT_MIN と DBL_MIN はそれぞれ正の最小値を表し，FLT_MAX と DBL_MAX はそれぞれ正の最大値を表す．<br>
+これらの値を利用することで，浮動小数点演算の範囲や精度を確認することができる．</p>
+<ul>
+<li>digitLoss.c</li>
+</ul>
+<p>このプログラムは数値計算における桁落ちを確認するためのプログラムである。以下はその実行結果である：</p>
+<pre class="hljs"><code><div>1.000000e+00x^2+-3.333330e+02x+1.234560e+00
+x1      =          3.333293e+02
+x1n     =          3.331450e+02
+x2      =          3.705774e-03
+</div></code></pre>
+<p>結果からわかるように、x1とx1nの値に差が生じており、これは桁落ちによる誤差が原因である。このような誤差は、数値計算において特に大きな値と小さな値を同時に扱う場合に発生しやすい。</p>
+<ul>
+<li>digitLoss0.c</li>
+</ul>
+<p>このプログラムは桁落ちを回避するための改良版である。数値計算において桁落ちを防ぐためには、計算順序を工夫することが重要である。このプログラムでは、計算順序を変更することで誤差を最小限に抑えることを試みている。<br>
+9.990000e-01 +          1.234560e+00 =          2.233560e+00
+9.990000e-02 +          1.234560e+00 =          1.334460e+00
+9.990000e-03 +          1.234560e+00 =          1.244550e+00
+9.990000e-04 +          1.234560e+00 =          1.235559e+00
+9.990000e-05 +          1.234560e+00 =          1.234660e+00
+9.990001e-06 +          1.234560e+00 =          1.234570e+00
+9.990001e-07 +          1.234560e+00 =          1.234561e+00
+9.990001e-08 +          1.234560e+00 =          1.234560e+00
+9.990002e-09 +          1.234560e+00 =          1.234560e+00</p>
+<ul>
+<li>emach.c</li>
+</ul>
+<p>このプログラムは機械イプシロン (Emach) を計算するプログラムである。機械イプシロンとは、1に加えても1と区別できなくなる最小の値を指す。以下はその実行結果である：</p>
+<pre class="hljs"><code><div>Emach = 53 b=1.110223e-16 1+b=1.000000e+00  
+Emach = 54 b=5.551115e-17 1+b=1.000000e+00  
+Emach = 55 b=2.775558e-17 1+b=1.000000e+00  
+Emach = 56 b=1.387779e-17 1+b=1.000000e+00  
+Emach = 57 b=6.938894e-18 1+b=1.000000e+00  
+Emach = 58 b=3.469447e-18 1+b=1.000000e+00  
+Emach = 59 b=1.734723e-18 1+b=1.000000e+00  
+</div></code></pre>
+<p>結果からわかるように、bの値が小さくなるにつれて、1+bが1と区別できなくなる。この値は浮動小数点演算の精度を示しており、数値計算において重要な指標となる。特に、数値計算の誤差を評価する際に利用される。</p>
+<ul>
+<li>ifeq.c</li>
+</ul>
+<p>first argument &quot;9&quot; version.
+b=5.080526e-05
+OK       a= 1.000000e+00 b=1.000000e+00 a-b=0.000000e+00</p>
+<p>first argument &quot;10&quot; version.
+b=1.693509e-05
+NO       a= 1.000000e+00 b=1.000000e+00 a-b=-2.220446e-16</p>
+<p>この結果から，表示上は a と b の値はどちらも 1.0 に見えます．しかし，実際にはほんのわずかな差があり，バージョン10の方では a - b の結果が -2.220446e-16 となっています．これは，コンピュータ内部で浮動小数点数を扱うときに起きる「丸め誤差（まるめごさ）」が原因です．</p>
+<ul>
+<li>roundError.c</li>
+</ul>
+<p>b= 1.800000e+00          a=6.000000e-01
+different
+0011111111111100110011001100110011001100110011001100110011001100(64 bit)
+0011111111111100110011001100110011001100110011001100110011001101(64 bit)</p>
+<p>このプログラムでは，変数 a に 0.6 を代入し，それを 3 倍して得られた値と 1.8（変数 b）を比較していると考えられる．理論上は 0.6 × 3 = 1.8 となるはずであるが，実行結果では different（異なる）と出力されており，ビット列も1ビットだけ異なっていることがわかる．</p>
+
+</body>
+</html>

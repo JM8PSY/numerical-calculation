@@ -31,6 +31,8 @@ double goldsect(double a, double b,
 
 double func(double x)  /* 最小化する関数 */
 {
+    printf("func(%g)\n", x); // 課題のため追加した行
+
     static int count = 0;
     const double xmin = 0.314;
     double value;
